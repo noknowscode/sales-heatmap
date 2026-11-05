@@ -1,0 +1,41 @@
+{
+  "$schema": "https://schemas.platform.uno/sample/v1",
+  "id": "sales-heatmap",
+  "displayName": "Sales Heatmap",
+  "description": "Sales Heatmap is a live sales overview widget for Uno Platform: a 12 by 8 activity heatmap, monthly and yearly totals with their change, and the top three regions. An MVUX feed publishes a new sales snapshot every two seconds and the page shows it in a FeedView; the widget eases its figures toward each snapshot, colours each change green or red, drifts the heatmap cells and blinks a live indicator. It uses MVUX, Navigation Extensions, the Toolkit and Material.",
+  "platforms": [
+    "desktop",
+    "wasm",
+    "android"
+  ],
+  "sourcePath": "SalesHeatmap/SalesHeatmap.csproj",
+  "iconUrl": "https://raw.githubusercontent.com/noknowscode/sales-heatmap/studio/.studiolive/icon.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/noknowscode/sales-heatmap/studio/.studiolive/screenshots/overview-desktop.png",
+    "https://raw.githubusercontent.com/noknowscode/sales-heatmap/studio/.studiolive/screenshots/overview-phone.png"
+  ],
+  "showcase": {
+    "summary": "A live sales overview card with an animated heatmap, fed by an MVUX feed.",
+    "type": "showcase",
+    "status": "preview",
+    "owner": [
+      "noknowscode"
+    ],
+    "industry": "Sales and retail analytics",
+    "goals": [
+      "An MVUX feed built from an async enumerable, shown in a FeedView with a progress state",
+      "A reusable UserControl that takes its data through one dependency property",
+      "Figures that ease toward each new snapshot and stop the easing timer once they settle",
+      "A heatmap of plain XAML rectangles that updates a cell only when its colour bucket changes",
+      "A card that keeps its layout at 400 wide and scales down to fit a phone"
+    ],
+    "tags": [
+      "mvux",
+      "navigation",
+      "toolkit",
+      "material",
+      "animation",
+      "dashboard"
+    ]
+  }
+}

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="450" height="450" viewBox="0 0 50.369617 49.826836" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <!-- A heatmap: a grid of cells whose strength varies -->
+  <rect x="10.0" y="13.7" width="6.4" height="6.4" rx="1.3" fill="#FFFFFF" fill-opacity="0.35" />
+  <rect x="18.0" y="13.7" width="6.4" height="6.4" rx="1.3" fill="#FFFFFF" fill-opacity="0.8" />
+  <rect x="26.0" y="13.7" width="6.4" height="6.4" rx="1.3" fill="#FFFFFF" fill-opacity="0.5" />
+  <rect x="34.0" y="13.7" width="6.4" height="6.4" rx="1.3" fill="#FFFFFF" fill-opacity="1.0" />
+  <rect x="10.0" y="21.7" width="6.4" height="6.4" rx="1.3" fill="#FFFFFF" fill-opacity="0.6" />
+  <rect x="18.0" y="21.7" width="6.4" height="6.4" rx="1.3" fill="#FFFFFF" fill-opacity="1.0" />
+  <rect x="26.0" y="21.7" width="6.4" height="6.4" rx="1.3" fill="#FFFFFF" fill-opacity="0.3" />
+  <rect x="34.0" y="21.7" width="6.4" height="6.4" rx="1.3" fill="#FFFFFF" fill-opacity="0.75" />
+  <rect x="10.0" y="29.7" width="6.4" height="6.4" rx="1.3" fill="#FFFFFF" fill-opacity="1.0" />
+  <rect x="18.0" y="29.7" width="6.4" height="6.4" rx="1.3" fill="#FFFFFF" fill-opacity="0.45" />
+  <rect x="26.0" y="29.7" width="6.4" height="6.4" rx="1.3" fill="#FFFFFF" fill-opacity="0.85" />
+  <rect x="34.0" y="29.7" width="6.4" height="6.4" rx="1.3" fill="#FFFFFF" fill-opacity="0.4" />
+</svg>

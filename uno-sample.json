@@ -1,0 +1,42 @@
+{
+  "$schema": "https://schemas.platform.uno/sample/v1",
+  "id": "sales-heatmap",
+  "displayName": "Sales Heatmap",
+  "description": "Sales Heatmap is a live sales overview widget for Uno Platform: a 12 by 8 activity heatmap, monthly and yearly totals with their change, and the top three regions. An MVUX feed publishes a new sales snapshot every two seconds and the page shows it in a FeedView; the widget eases its figures toward each snapshot, colours each change green or red, drifts the heatmap cells and blinks a live indicator. It uses MVUX, Navigation Extensions, the Toolkit and Material.",
+  "platforms": [
+    "desktop",
+    "wasm",
+    "android"
+  ],
+  "sourcePath": "SalesHeatmap/SalesHeatmap.csproj",
+  "userConversation": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Build a live sales overview widget for Uno Platform:\n- a card titled \"Sales overview\" with a blinking LIVE indicator;\n- a 12 by 8 heatmap of grey cells that shift in intensity all the time;\n- monthly and yearly sales totals, each with its change as a green up or red down percentage;\n- a \"Top regions\" list: Los Angeles, New York and Canada, each with its total and change;\n- a new sales snapshot every two seconds, with the numbers easing to the new values instead of jumping;\n- a loading state before the first snapshot, and a card that fits a phone screen.\n\nStack: Uno Platform single project, MVUX with a FeedView, Navigation Extensions, Toolkit, Material; desktop, WebAssembly and Android."
+      },
+      {
+        "role": "assistant",
+        "content": "Sales Heatmap is built and running: the card updates every two seconds and the heatmap keeps shifting."
+      }
+    ],
+    "suggestedPrompts": [
+      "Colour the heatmap cells with the theme's primary colour in place of grey",
+      "Add a fourth region, Chicago, to the top regions list",
+      "Add a dark theme toggle in the card's header",
+      "Show a small sparkline of the monthly total under its value"
+    ]
+  },
+  "agentContext": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "This is Sales Heatmap, a live sales overview widget for Uno Platform, fed by an MVUX feed."
+      },
+      {
+        "role": "assistant",
+        "content": "Sales Heatmap is one Uno single project, `SalesHeatmap/SalesHeatmap.csproj` (Uno.Sdk from `global.json`, heads net10.0-android, net10.0-browserwasm and net10.0-desktop; UnoFeatures Material, Dsp, Hosting, Toolkit, Logging, MVUX, Navigation, SkiaRenderer).\n\nKey files:\n- `App.xaml.cs`: the host (logging, navigation) and the routes: `Shell` (with `ShellModel`) holds the region, and `Main` (`MainPage`, `MainModel`) is the default route. `Presentation/Shell.xaml` is the Toolkit's `ExtendedSplashScreen`.\n- `App.xaml`: Material Toolkit theme with the colour override in `Styles/ColorPaletteOverride.xaml` (from `ColorPaletteOverride.json`), and the `WidgetMonoFamily` font list the widget uses.\n- `Presentation/MainModel.cs`: `IFeed<SalesSnapshot> Snapshot`, built with `Feed.AsyncEnumerable`: the initial snapshot, then a new random one every two seconds on a `PeriodicTimer` that honours the feed's cancellation token.\n- `Presentation/SalesSnapshot.cs`: an immutable record (monthly and yearly totals and changes; Los Angeles, New York and Canada with their changes), with `Initial` and `NextRandom(Random)`.\n- `Presentation/MainPage.xaml`: a `FeedView` on `Snapshot` (a `ProgressRing` while it loads) whose value template puts the widget in a `Viewbox` (`StretchDirection=\"DownOnly\"`, at most 400 wide), so the card lays out at 400 and scales down on a phone.\n- `Presentation/SalesHeatmapWidget.xaml(.cs)`: the widget, a `UserControl` with one `Snapshot` dependency property. The XAML is the card (title and LIVE dot, the heatmap's host `Grid`, monthly and yearly figures, top regions). The code-behind builds 12 by 8 `Rectangle` cells on load and runs three `DispatcherTimer`s: every 150 ms a few cells get a new random target and every cell eases toward its target, changing `Fill` only when its bucket in a 32-step grey palette changes; every 16 ms the figures ease 10% toward the snapshot and the timer stops once they are within 0.5; every 500 ms the LIVE dot blinks. Text is set only when it changes. `Unloaded` stops and unhooks all three timers.\n\nTraps: MVUX pages bind with `{Binding}`; inside the `FeedView` template the value is `Data`. The heatmap cells are decorative and random; the snapshot drives the figures only. The green and red change brushes are fixed colours in the code-behind.\n\nData is simulated; nothing leaves the device. There are no tests.\n\nBuild: `dotnet build SalesHeatmap/SalesHeatmap.csproj -f net10.0-desktop`, or `-f net10.0-browserwasm` for WebAssembly.\n\nThe app is built and running. The user may ask me to modify it."
+      }
+    ]
+  }
+}

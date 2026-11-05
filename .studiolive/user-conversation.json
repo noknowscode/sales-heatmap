@@ -1,0 +1,18 @@
+{
+  "messages": [
+    {
+      "role": "user",
+      "content": "Build a live sales overview widget for Uno Platform:\n- a card titled \"Sales overview\" with a blinking LIVE indicator;\n- a 12 by 8 heatmap of grey cells that shift in intensity all the time;\n- monthly and yearly sales totals, each with its change as a green up or red down percentage;\n- a \"Top regions\" list: Los Angeles, New York and Canada, each with its total and change;\n- a new sales snapshot every two seconds, with the numbers easing to the new values instead of jumping;\n- a loading state before the first snapshot, and a card that fits a phone screen.\n\nStack: Uno Platform single project, MVUX with a FeedView, Navigation Extensions, Toolkit, Material; desktop, WebAssembly and Android."
+    },
+    {
+      "role": "assistant",
+      "content": "Sales Heatmap is built and running: the card updates every two seconds and the heatmap keeps shifting."
+    }
+  ],
+  "suggestedPrompts": [
+    "Colour the heatmap cells with the theme's primary colour in place of grey",
+    "Add a fourth region, Chicago, to the top regions list",
+    "Add a dark theme toggle in the card's header",
+    "Show a small sparkline of the monthly total under its value"
+  ]
+}
