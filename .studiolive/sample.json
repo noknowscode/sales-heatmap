@@ -2,7 +2,7 @@
   "$schema": "https://schemas.platform.uno/sample/v1",
   "id": "sales-heatmap",
   "displayName": "Sales Heatmap",
-  "description": "Sales Heatmap is a live sales overview widget for Uno Platform: a 12 by 8 activity heatmap, monthly and yearly totals with their change, and the top three regions. An MVUX feed publishes a new sales snapshot every two seconds and the page shows it in a FeedView; the widget eases its figures toward each snapshot, colours each change green or red, drifts the heatmap cells and blinks a live indicator. It uses MVUX, Navigation Extensions, the Toolkit and Material.",
+  "description": "Sales Heatmap is a live sales overview widget for Uno Platform: a 12 by 8 activity heatmap, monthly and yearly totals with their change, and the top three regions. An MVUX feed publishes a new sales snapshot every two seconds and the page shows it in a FeedView; the widget eases its figures toward each snapshot, marks each change as a rise or a fall, drifts the heatmap cells and blinks a live indicator. Every colour, text style, spacing and corner comes from the Material theme, so the card follows Light, Dark and any palette. It uses MVUX, Navigation Extensions, the Toolkit and Material.",
   "platforms": [
     "desktop",
     "wasm",
@@ -26,7 +26,7 @@
       "An MVUX feed built from an async enumerable, shown in a FeedView with a progress state",
       "A reusable UserControl that takes its data through one dependency property",
       "Figures that ease toward each new snapshot and stop the easing timer once they settle",
-      "A heatmap of plain XAML rectangles that updates a cell only when its colour bucket changes",
+      "A look taken entirely from the theme: palette roles, Material type styles, Uno.Themes spacing and radius tokens",
       "A card that keeps its layout at 400 wide and scales down to fit a phone"
     ],
     "tags": [
@@ -34,6 +34,7 @@
       "navigation",
       "toolkit",
       "material",
+      "theming",
       "animation",
       "dashboard"
     ]
