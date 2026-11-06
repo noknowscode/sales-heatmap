@@ -6,7 +6,7 @@
       xmlns:utu="using:Uno.Toolkit.UI"
       Background="{ThemeResource SurfaceVariantBrush}">
 
-    <Grid utu:SafeArea.Insets="All" Padding="24">
+    <Grid utu:SafeArea.Insets="All" Padding="{StaticResource Space300Thickness}">
         <mvux:FeedView Source="{Binding Snapshot}"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center">

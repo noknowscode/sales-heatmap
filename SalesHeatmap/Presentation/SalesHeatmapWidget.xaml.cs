@@ -2,7 +2,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Shapes;
-using Windows.UI;
+using Path = Microsoft.UI.Xaml.Shapes.Path;
 
 namespace SalesHeatmap.Presentation;
 
@@ -12,15 +12,10 @@ public sealed partial class SalesHeatmapWidget : UserControl
     private const int GridRows = 8;
     private const double CellSize = 20;
     private const double CellGap = 3;
-    private const int PaletteBuckets = 32;
+    private const int IntensityBuckets = 32;
+    private const double MinCellOpacity = 0.12;
     private const double InterpolationFactor = 0.10;
     private const double ConvergenceEpsilon = 0.5;
-
-    private static readonly SolidColorBrush[] HeatmapPalette = BuildHeatmapPalette();
-    private static readonly SolidColorBrush PositiveBrush =
-        new(Color.FromArgb(255, 0, 255, 136));
-    private static readonly SolidColorBrush NegativeBrush =
-        new(Color.FromArgb(255, 255, 68, 68));
 
     public static readonly DependencyProperty SnapshotProperty =
         DependencyProperty.Register(
@@ -58,6 +53,11 @@ public sealed partial class SalesHeatmapWidget : UserControl
     private int _lastMonthlySign = int.MinValue, _lastYearlySign = int.MinValue;
     private int _lastLASign = int.MinValue, _lastNYSign = int.MinValue, _lastCASign = int.MinValue;
 
+    // Theme-bound brushes from the control's resources (see the XAML): stable instances whose colour follows the theme.
+    private readonly Brush _heatCellBrush;
+    private readonly Brush _riseBrush;
+    private readonly Brush _fallBrush;
+
     private DispatcherTimer? _heatmapTimer;
     private DispatcherTimer? _interpolationTimer;
     private DispatcherTimer? _liveIndicatorTimer;
@@ -66,28 +66,24 @@ public sealed partial class SalesHeatmapWidget : UserControl
     public SalesHeatmapWidget()
     {
         this.InitializeComponent();
+        _heatCellBrush = (Brush)Resources["HeatCellBrush"];
+        _riseBrush = (Brush)Resources["RiseBrush"];
+        _fallBrush = (Brush)Resources["FallBrush"];
         Loaded += OnLoaded;
         Unloaded += OnUnloaded;
         SeedFromSnapshot(SalesSnapshot.Initial, animate: false);
     }
 
-    private static SolidColorBrush[] BuildHeatmapPalette()
-    {
-        var palette = new SolidColorBrush[PaletteBuckets];
-        for (int i = 0; i < PaletteBuckets; i++)
-        {
-            double intensity = (double)i / (PaletteBuckets - 1);
-            double lightness = 0.12 + intensity * 0.73;
-            byte gray = (byte)(lightness * 255);
-            palette[i] = new SolidColorBrush(Color.FromArgb(255, gray, gray, gray));
-        }
-        return palette;
-    }
-
     private static int IntensityToBucket(double intensity)
     {
-        int bucket = (int)(Math.Clamp(intensity, 0, 1) * (PaletteBuckets - 1));
+        int bucket = (int)(Math.Clamp(intensity, 0, 1) * (IntensityBuckets - 1));
         return bucket;
+    }
+
+    // A cell's heat is its opacity over the heat brush, in steps so a cell changes only when its step does.
+    private static double BucketToOpacity(int bucket)
+    {
+        return MinCellOpacity + (1 - MinCellOpacity) * bucket / (IntensityBuckets - 1);
     }
 
     private static void OnSnapshotChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -193,7 +189,8 @@ public sealed partial class SalesHeatmapWidget : UserControl
                     Height = CellSize,
                     RadiusX = 3,
                     RadiusY = 3,
-                    Fill = HeatmapPalette[bucket],
+                    Fill = _heatCellBrush,
+                    Opacity = BucketToOpacity(bucket),
                     HorizontalAlignment = HorizontalAlignment.Left,
                     VerticalAlignment = VerticalAlignment.Top
                 };
@@ -244,7 +241,7 @@ public sealed partial class SalesHeatmapWidget : UserControl
                 if (bucket != _appliedBuckets[col, row])
                 {
                     _appliedBuckets[col, row] = bucket;
-                    _heatmapCells[col, row].Fill = HeatmapPalette[bucket];
+                    _heatmapCells[col, row].Opacity = BucketToOpacity(bucket);
                 }
             }
         }
@@ -304,9 +301,9 @@ public sealed partial class SalesHeatmapWidget : UserControl
         UpdateChangeIndicator(YearlyChangeIcon, YearlyChangeValue, _yearlyChangeCurrent,
             ref _lastYearlyChangeText, ref _lastYearlySign);
 
-        UpdateCityChange(LAChange, _laChangeCurrent, ref _lastLAChangeText, ref _lastLASign);
-        UpdateCityChange(NYChange, _nyChangeCurrent, ref _lastNYChangeText, ref _lastNYSign);
-        UpdateCityChange(CAChange, _caChangeCurrent, ref _lastCAChangeText, ref _lastCASign);
+        UpdateCityChange(LAChangeIcon, LAChange, _laChangeCurrent, ref _lastLAChangeText, ref _lastLASign);
+        UpdateCityChange(NYChangeIcon, NYChange, _nyChangeCurrent, ref _lastNYChangeText, ref _lastNYSign);
+        UpdateCityChange(CAChangeIcon, CAChange, _caChangeCurrent, ref _lastCAChangeText, ref _lastCASign);
     }
 
     private static void SetTextIfChanged(TextBlock target, string value, ref string? cache)
@@ -319,8 +316,8 @@ public sealed partial class SalesHeatmapWidget : UserControl
     private static string FormatCurrency(double value) =>
         "$" + ((int)value).ToString("N0");
 
-    private static void UpdateChangeIndicator(
-        TextBlock iconBlock,
+    private void UpdateChangeIndicator(
+        Path icon,
         TextBlock valueBlock,
         double change,
         ref string? cachedValueText,
@@ -330,10 +327,9 @@ public sealed partial class SalesHeatmapWidget : UserControl
         if (sign != cachedSign)
         {
             cachedSign = sign;
-            var brush = sign >= 0 ? PositiveBrush : NegativeBrush;
-            iconBlock.Foreground = brush;
+            var brush = sign >= 0 ? _riseBrush : _fallBrush;
+            SetArrow(icon, sign, brush);
             valueBlock.Foreground = brush;
-            iconBlock.Text = sign >= 0 ? "▲" : "▼";
         }
 
         string valueText = Math.Abs(change).ToString("F1") + "%";
@@ -342,7 +338,8 @@ public sealed partial class SalesHeatmapWidget : UserControl
         valueBlock.Text = valueText;
     }
 
-    private static void UpdateCityChange(
+    private void UpdateCityChange(
+        Path icon,
         TextBlock changeBlock,
         double change,
         ref string? cachedText,
@@ -352,12 +349,21 @@ public sealed partial class SalesHeatmapWidget : UserControl
         if (sign != cachedSign)
         {
             cachedSign = sign;
-            changeBlock.Foreground = sign >= 0 ? PositiveBrush : NegativeBrush;
+            var brush = sign >= 0 ? _riseBrush : _fallBrush;
+            SetArrow(icon, sign, brush);
+            changeBlock.Foreground = brush;
         }
 
-        string text = (sign >= 0 ? "▲ +" : "▼ ") + Math.Abs(change).ToString("F1") + "%";
+        string text = Math.Abs(change).ToString("F1") + "%";
         if (cachedText == text) return;
         cachedText = text;
         changeBlock.Text = text;
+    }
+
+    // The arrow is drawn (the theme font has no arrow glyph): up as authored, down flipped.
+    private static void SetArrow(Path icon, int sign, Brush brush)
+    {
+        icon.Fill = brush;
+        ((ScaleTransform)icon.RenderTransform).ScaleY = sign >= 0 ? 1 : -1;
     }
 }
