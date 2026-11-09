@@ -1,0 +1,28 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>stylized-split-titled</title>
+<link rel="stylesheet" href="frames.css">
+<style>
+  /* One card, Light and Dark, at one held moment of the feed (session S1, moment M1: the page clock paused between two
+     snapshots, the theme switched, nothing else moved), cut on one diagonal through card and ground alike. Titled: the card moves right and the app's display name, set
+     in Roboto Medium (the Material type face the card's own titles use; OnSurface, with Heatmap in Primary), takes the
+     day side. The cut runs
+     at the angle of the card's own drawn change arrow (M0,6 L4,0 L8,6: a rise of 6 over 4, 56.3 degrees). */
+  .half { position: absolute; inset: 0; overflow: hidden; }
+  .stage { --cut-top: 980px; --cut-bottom: 560px; }
+  .day { background: radial-gradient(80% 95% at 28% 40%, var(--bg), color-mix(in srgb, var(--pc) 70%, var(--bg)) 60%, var(--pc) 100%);
+    clip-path: polygon(0 0, var(--cut-top) 0, var(--cut-bottom) 100%, 0 100%); }
+  .night { background: radial-gradient(80% 95% at 72% 45%, color-mix(in srgb, var(--n-on-primary) 45%, var(--n-bg)), color-mix(in srgb, var(--n-on-primary) 16%, var(--n-bg)) 60%, var(--n-bg) 100%);
+    clip-path: polygon(var(--cut-top) 0, 100% 0, 100% 100%, var(--cut-bottom) 100%); }
+  .card { left: 570px; top: 40px; width: 400px; }
+  .glow { position: absolute; left: 550px; top: 70px; width: 440px; height: 520px; border-radius: 50%; filter: blur(60px); }
+  .day .glow { background: radial-gradient(closest-side, rgba(89,70,210,.22), rgba(89,70,210,0)); }
+  .night .glow { background: radial-gradient(closest-side, rgba(65,41,186,.55), rgba(65,41,186,0)); }
+  .title { position: absolute; left: 92px; top: 222px; font: 500 74px/1.0 'Roboto'; letter-spacing: -.012em; color: var(--ink); }
+  .title span { display: block; }
+  .title .accent { color: var(--primary); }
+</style></head>
+<body><div class="stage grain" style="--grain:.05">
+  <div class="half day"><div class="glow"></div><div class="title"><span>Sales</span><span class="accent">Heatmap</span></div><div class="card"><img src="cap/card-light@3x.png"></div></div>
+  <div class="half night on-night"><div class="glow"></div><div class="card"><img src="cap/card-dark@3x.png"></div></div>
+  <svg width="1200" height="630" style="position:absolute;inset:0"><line x1="980" y1="0" x2="560" y2="630" stroke="#C7BFFF" stroke-opacity=".9" stroke-width="1.5"/></svg>
+</div></body></html>

@@ -1,0 +1,32 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>focus-heatmap</title>
+<link rel="stylesheet" href="frames.css">
+<style>
+  /* The heatmap's well (Light), lifted out of the card and laid back on the app's own violet: the Light Primary sunk
+     into OnPrimaryContainer. 96 cells of the Primary role, each cell's heat its opacity. Shown at 1.5x its CSS size at
+     most (a 3x capture: its own pixels in the 2x export); the plane pivots on its near edge, so nothing comes closer
+     than that. The glow behind it is the same capture, blurred. */
+  .stage { background:
+      radial-gradient(60% 75% at 50% 50%, color-mix(in srgb, var(--primary) 70%, var(--on-pc)) 0%, color-mix(in srgb, var(--primary) 35%, var(--on-pc)) 55%, var(--on-pc) 100%); }
+  .rig { position: absolute; left: var(--cx, 50%); top: var(--top, 322px); width: 0; height: 0; perspective: 1400px; }
+  .plane { position: absolute; width: 522px; height: 315px; left: -261px; top: -175px;
+    transform-origin: 50% 100%; transform: rotateX(var(--rx, 30deg)) rotateZ(var(--rz, -9deg)) scale(.94); }
+  .plane img { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: 12px; }
+  .glow { filter: blur(70px); opacity: .35; mix-blend-mode: screen; transform: translateY(20px) scale(1.05); }
+  .shade { position: absolute; inset: 0; border-radius: 12px;
+    box-shadow: 0 2px 3px rgba(23,0,101,.35), 0 26px 50px -12px rgba(23,0,101,.7); }
+  .edge { position: absolute; inset: 0; border-radius: 12px; box-shadow: inset 0 0 0 1px rgba(89,70,210,.12); }
+  .sheen { position: absolute; inset: 0; border-radius: 12px; background: linear-gradient(175deg, rgba(255,255,255,.18), rgba(255,255,255,0) 38%); }
+  /* the floor under it: OnPrimaryContainer, softly */
+  .floor { position: absolute; left: 50%; top: var(--floor, 450px); width: 760px; height: 130px; margin-left: -380px; border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(23,0,101,.55), rgba(23,0,101,0)); filter: blur(12px); }
+</style></head>
+<body><div class="stage grain" style="--grain:.06">
+  <div class="floor"></div>
+  <div class="rig"><div class="plane">
+    <img class="glow" src="cap/well-light@3x.png">
+    <div class="shade"></div>
+    <img src="cap/well-light@3x.png">
+    <div class="sheen"></div><div class="edge"></div>
+  </div></div>
+</div></body></html>

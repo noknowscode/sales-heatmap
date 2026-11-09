@@ -1,0 +1,20 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>focus-regions</title>
+<link rel="stylesheet" href="frames.css">
+<style>
+  /* The top regions, Light: Los Angeles and Canada up in the app's PositiveColor, New York down in the Error role, each
+     with its drawn arrow. The panel is lifted out of the card at 1.5x (a 3x capture: its own pixels in the 2x export);
+     the card it came from (the same moment) stands behind it, out of focus. */
+  .stage { background:
+      radial-gradient(70% 90% at 55% 50%, var(--bg) 0%, color-mix(in srgb, var(--pc) 55%, var(--bg)) 55%, var(--pc) 100%); }
+  .back { position: absolute; left: var(--bx, 170px); top: var(--by, 40px); width: 400px; filter: blur(var(--blur, 3.5px)); opacity: .9; }
+  .back img { width: 100%; display: block; border-radius: 16px; }
+  .back { border-radius: 16px; box-shadow: 0 10px 24px -8px rgba(23,0,101,.16), 0 34px 70px -24px rgba(23,0,101,.30); }
+  .panel { position: absolute; left: var(--px, 528px); top: var(--py, 250px); width: 522px; border-radius: 12px;
+    box-shadow: 0 1px 2px rgba(23,0,101,.08), 0 14px 30px -10px rgba(23,0,101,.22), 0 44px 80px -28px rgba(23,0,101,.38); }
+  .panel img { width: 100%; display: block; border-radius: 12px; }
+</style></head>
+<body><div class="stage grain" style="--grain:.05">
+  <div class="back"><img src="cap/card-light@3x.png"></div>
+  <div class="panel"><img src="cap/regions-light@3x.png"></div>
+</div></body></html>

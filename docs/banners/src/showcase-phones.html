@@ -1,0 +1,21 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>showcase-phones</title>
+<link rel="stylesheet" href="frames.css">
+<style>
+  /* Three phones on the violet night: Dark, Light (centre, raised), Dark. All from one running card (session S4):
+     the left and centre phones are one held moment shown in both themes, the right phone a later one, so its figures
+     and heatmap have moved on, as the feed does every two seconds. */
+  .stage { background:
+      radial-gradient(46% 80% at 50% 44%, color-mix(in srgb, var(--n-pc) 55%, var(--n-bg)) 0%, color-mix(in srgb, var(--n-on-primary) 28%, var(--n-bg)) 55%, var(--n-bg) 100%); }
+  .p1 { left: 196px; top: 96px; width: 238px; height: 498px; --bezel: 9px; --r: 36px; }
+  .p2 { left: 471px; top: 44px; width: 258px; height: 540px; --bezel: 9px; --r: 38px; }
+  .p3 { left: 766px; top: 96px; width: 238px; height: 498px; --bezel: 9px; --r: 36px; }
+  .floor { position: absolute; left: 25%; right: 25%; top: 560px; height: 60px; border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(0,0,0,.5), rgba(0,0,0,0)); filter: blur(10px); }
+</style></head>
+<body><div class="stage grain on-night" style="--grain:.06">
+  <div class="floor"></div>
+  <div class="device p1"><div class="screen"><img src="cap/phone-dark@2x.png"></div></div>
+  <div class="device p3"><div class="screen"><img src="cap/phone-dark-2@2x.png"></div></div>
+  <div class="device p2"><div class="screen"><img src="cap/phone-light@2x.png"></div></div>
+</div></body></html>

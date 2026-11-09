@@ -1,0 +1,24 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>stylized-split-hero</title>
+<link rel="stylesheet" href="frames.css">
+<style>
+  /* One card, Light and Dark, at one held moment of the feed (session S1, moment M1: the page clock paused between two
+     snapshots, the theme switched, nothing else moved), cut on one diagonal through card and ground alike. The hero (1920 x 1080): the card at 1.55x (a 3x capture). The cut runs
+     at the angle of the card's own drawn change arrow (M0,6 L4,0 L8,6: a rise of 6 over 4, 56.3 degrees). */
+  .half { position: absolute; inset: 0; overflow: hidden; }
+  .stage { --cut-top: 1320px; --cut-bottom: 600px; }
+  .day { background: radial-gradient(80% 95% at 28% 40%, var(--bg), color-mix(in srgb, var(--pc) 70%, var(--bg)) 60%, var(--pc) 100%);
+    clip-path: polygon(0 0, var(--cut-top) 0, var(--cut-bottom) 100%, 0 100%); }
+  .night { background: radial-gradient(80% 95% at 72% 45%, color-mix(in srgb, var(--n-on-primary) 45%, var(--n-bg)), color-mix(in srgb, var(--n-on-primary) 16%, var(--n-bg)) 60%, var(--n-bg) 100%);
+    clip-path: polygon(var(--cut-top) 0, 100% 0, 100% 100%, var(--cut-bottom) 100%); }
+  .card { left: 650px; top: 114px; width: 620px; --r: 24.8px; }
+  .card img { border-radius: 24.8px; }
+  .glow { position: absolute; left: 610px; top: 160px; width: 700px; height: 820px; border-radius: 50%; filter: blur(90px); }
+  .day .glow { background: radial-gradient(closest-side, rgba(89,70,210,.22), rgba(89,70,210,0)); }
+  .night .glow { background: radial-gradient(closest-side, rgba(65,41,186,.55), rgba(65,41,186,0)); }
+</style></head>
+<body><div class="stage grain" style="--grain:.05">
+  <div class="half day"><div class="glow"></div><div class="card"><img src="cap/card-light@3x.png"></div></div>
+  <div class="half night on-night"><div class="glow"></div><div class="card"><img src="cap/card-dark@3x.png"></div></div>
+  <svg width="1920" height="1080" style="position:absolute;inset:0"><line x1="1320" y1="0" x2="600" y2="1080" stroke="#C7BFFF" stroke-opacity=".9" stroke-width="2"/></svg>
+</div></body></html>

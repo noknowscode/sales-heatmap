@@ -1,0 +1,137 @@
+{
+  "id": "sales-heatmap",
+  "displayName": "Sales Heatmap",
+  "banners": [
+    {
+      "name": "showcase-desk",
+      "family": "showcase",
+      "title": "Desk and phones",
+      "description": "The card in a desktop window (Light) between a Dark phone and a Light phone, on the app's lavender day; the phones are one held moment in both themes.",
+      "pick": false,
+      "files": {
+        "1x": "finals/showcase-desk@1x.png",
+        "2x": "finals/showcase-desk@2x.png"
+      }
+    },
+    {
+      "name": "showcase-phones",
+      "family": "showcase",
+      "title": "Three phones",
+      "description": "Three phones on the violet night: Dark, Light (centre, raised) and Dark, from one running card.",
+      "pick": false,
+      "files": {
+        "1x": "finals/showcase-phones@1x.png",
+        "2x": "finals/showcase-phones@2x.png"
+      }
+    },
+    {
+      "name": "showcase-daynight",
+      "family": "showcase",
+      "title": "Day and night",
+      "description": "The widget's original banner, current: two tablets, Light and Dark, at one held moment of the feed, on a ground from lavender day to violet night.",
+      "pick": false,
+      "files": {
+        "1x": "finals/showcase-daynight@1x.png",
+        "2x": "finals/showcase-daynight@2x.png"
+      }
+    },
+    {
+      "name": "focus-heatmap",
+      "family": "focused",
+      "title": "The heatmap",
+      "description": "The heatmap's well lifted out of the card and laid back on the app's own violet: 96 cells of the Primary role, each cell's heat its opacity.",
+      "pick": false,
+      "files": {
+        "1x": "finals/focus-heatmap@1x.png",
+        "2x": "finals/focus-heatmap@2x.png"
+      }
+    },
+    {
+      "name": "focus-figures",
+      "family": "focused",
+      "title": "Figures and arrows",
+      "description": "The monthly and yearly totals with their drawn arrows (one up, one down) in Dark, focused like a tilt-shift lens while the heatmap and regions fall away.",
+      "pick": false,
+      "files": {
+        "1x": "finals/focus-figures@1x.png",
+        "2x": "finals/focus-figures@2x.png"
+      }
+    },
+    {
+      "name": "focus-regions",
+      "family": "focused",
+      "title": "Top regions",
+      "description": "The top regions panel with rises and a fall, lifted out of the card at 1.5x in front of the card itself, out of focus.",
+      "pick": false,
+      "files": {
+        "1x": "finals/focus-regions@1x.png",
+        "2x": "finals/focus-regions@2x.png"
+      }
+    },
+    {
+      "name": "focus-card",
+      "family": "focused",
+      "title": "The card",
+      "description": "The whole card in Dark, flat and sharp, standing on a dark violet floor that mirrors it, back-lit.",
+      "pick": false,
+      "files": {
+        "1x": "finals/focus-card@1x.png",
+        "2x": "finals/focus-card@2x.png"
+      }
+    },
+    {
+      "name": "stylized-split",
+      "family": "stylized",
+      "title": "Light and Dark split",
+      "description": "One card at one held moment, Light and Dark, cut on a diagonal at the angle of its own drawn arrow: the figures and the heatmap continue across the cut.",
+      "pick": true,
+      "files": {
+        "1x": "finals/stylized-split@1x.png",
+        "2x": "finals/stylized-split@2x.png",
+        "hero": "finals/stylized-split-hero.png"
+      }
+    },
+    {
+      "name": "stylized-palettes",
+      "family": "stylized",
+      "title": "Four palettes",
+      "description": "The theme does the look: the same card from four builds with different palettes (violet, teal, magenta, orange), alternating Light and Dark, each on a band of its own palette.",
+      "pick": true,
+      "files": {
+        "1x": "finals/stylized-palettes@1x.png",
+        "2x": "finals/stylized-palettes@2x.png",
+        "hero": "finals/stylized-palettes-hero.png"
+      }
+    },
+    {
+      "name": "stylized-stack",
+      "family": "stylized",
+      "title": "Every two seconds",
+      "description": "The heatmap's well at six moments of one running card, two seconds of feed apart, stacked oldest to newest like layers of time.",
+      "pick": false,
+      "files": {
+        "1x": "finals/stylized-stack@1x.png",
+        "2x": "finals/stylized-stack@2x.png"
+      }
+    },
+    {
+      "name": "stylized-split-titled",
+      "family": "titled",
+      "title": "Split, titled",
+      "description": "stylized-split with the display name \"Sales Heatmap\" in Roboto Medium on the day side.",
+      "pick": false,
+      "files": {
+        "1x": "finals/stylized-split-titled@1x.png",
+        "2x": "finals/stylized-split-titled@2x.png"
+      }
+    }
+  ],
+  "notes": [
+    "Light/Dark pairs come from one held moment (Playwright's page clock paused between feed snapshots), so their figures and heatmap agree exactly; across moments the figures differ, as the feed moves every 2 s.",
+    "showcase-desk: the window is a later moment than the two phones; showcase-phones: the right phone is a later moment than the left and centre ones (all one session).",
+    "stylized-palettes uses three extra builds with generated palettes (teal, magenta, orange seeds; material-color-utilities Fidelity) besides the shipped violet; each card is its own build and session.",
+    "Whole-screen showcases and the four-card palettes banner carry UI text below 10 px at 1x; focused banners keep text at 10 px or more.",
+    "Only text-free planes (the heatmap well, the stack) are tilted; every element with text is flat.",
+    "No third-party brands: the card names places (Los Angeles, New York, Canada)."
+  ]
+}

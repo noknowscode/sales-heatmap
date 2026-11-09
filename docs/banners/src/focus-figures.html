@@ -1,0 +1,23 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>focus-figures</title>
+<link rel="stylesheet" href="frames.css">
+<style>
+  /* The totals with their drawn arrows, Dark: Monthly up in the app's PositiveColor, Yearly down in the Error role.
+     The card is shown at 1.5x (a 3x capture: its own pixels in the 2x export) and focused like a tilt-shift lens on the
+     figures: the heatmap above and the regions below fall out of focus (the same capture, blurred). */
+  .stage { background:
+      radial-gradient(55% 80% at 50% 50%, color-mix(in srgb, var(--n-on-primary) 40%, var(--n-bg)) 0%, color-mix(in srgb, var(--n-on-primary) 14%, var(--n-bg)) 60%, var(--n-bg) 100%); }
+  .c { position: absolute; left: 300px; top: var(--top, -204px); width: 600px; height: 824.5px; border-radius: 24px; }
+  .c img { width: 100%; height: 100%; display: block; border-radius: 24px; }
+  .soft { filter: blur(var(--blur, 5px)); }
+  .sharp { -webkit-mask-image: linear-gradient(180deg, transparent var(--a, 400px), #000 var(--b, 448px), #000 var(--c, 572px), transparent var(--d, 625px));
+                  mask-image: linear-gradient(180deg, transparent var(--a, 400px), #000 var(--b, 448px), #000 var(--c, 572px), transparent var(--d, 625px)); }
+  .lift { box-shadow: 0 2px 4px rgba(0,0,0,.35), 0 30px 70px -20px rgba(0,0,0,.75); }
+  .glow { position: absolute; left: 260px; top: 150px; width: 680px; height: 330px; border-radius: 50%; filter: blur(50px);
+    background: radial-gradient(closest-side, rgba(65,41,186,.55), rgba(65,41,186,0)); }
+</style></head>
+<body><div class="stage grain on-night" style="--grain:.06">
+  <div class="glow"></div>
+  <div class="c lift soft"><img src="cap/card-dark@3x.png"></div>
+  <div class="c sharp"><img src="cap/card-dark@3x.png"></div>
+</div></body></html>

@@ -1,0 +1,29 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>stylized-stack</title>
+<link rel="stylesheet" href="frames.css">
+<style>
+  /* Every two seconds: the heatmap's well (Light) at six successive moments of one running card, two seconds of feed
+     apart (session S2: the page clock paused, then advanced 2 s between shots), stacked oldest at the bottom and newest
+     on top, like layers of time. Orthographic isometric planes
+     (no perspective), so no cell is shown above 1.5x its CSS size (3x captures). The lower layers fade into the
+     lavender ground (PrimaryContainer). */
+  .stage { background:
+      radial-gradient(60% 80% at 50% 45%, var(--bg) 0%, color-mix(in srgb, var(--pc) 60%, var(--bg)) 55%, var(--pc) 100%); }
+  .iso { position: absolute; left: 50%; top: var(--top, 420px); width: 0; height: 0; }
+  .layer { position: absolute; width: 522px; height: 315px; left: -261px; top: -157px;
+    transform: translateY(calc(var(--i) * var(--gap, -42px))) rotateX(58deg) rotateZ(-42deg);
+    filter: drop-shadow(0 14px 16px rgba(23,0,101,.16)); }
+  .layer img { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: 12px; }
+  .layer .rim { position: absolute; inset: 0; border-radius: 12px; box-shadow: inset 0 0 0 1px rgba(89,70,210,var(--rim, .22)); }
+  .layer .dim { position: absolute; inset: 0; border-radius: 12px; background: var(--pc); opacity: var(--dim, 0); }
+</style></head>
+<body><div class="stage grain" style="--grain:.05">
+  <div class="iso">
+    <div class="layer" style="--i:0; --dim:.38; --rim:.12"><img src="cap/well-t0-light@3x.png"><div class="dim"></div><div class="rim"></div></div>
+    <div class="layer" style="--i:1; --dim:.31; --rim:.14"><img src="cap/well-t1-light@3x.png"><div class="dim"></div><div class="rim"></div></div>
+    <div class="layer" style="--i:2; --dim:.24; --rim:.16"><img src="cap/well-t2-light@3x.png"><div class="dim"></div><div class="rim"></div></div>
+    <div class="layer" style="--i:3; --dim:.16; --rim:.18"><img src="cap/well-t3-light@3x.png"><div class="dim"></div><div class="rim"></div></div>
+    <div class="layer" style="--i:4; --dim:.08; --rim:.2"><img src="cap/well-t4-light@3x.png"><div class="dim"></div><div class="rim"></div></div>
+    <div class="layer" style="--i:5; --dim:0; --rim:.26"><img src="cap/well-t5-light@3x.png"><div class="dim"></div><div class="rim"></div></div>
+  </div>
+</div></body></html>

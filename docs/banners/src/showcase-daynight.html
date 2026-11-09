@@ -1,0 +1,25 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>showcase-daynight</title>
+<link rel="stylesheet" href="frames.css">
+<style>
+  /* The widget's own original banner, current: two tablets, Light and Dark, now on a ground that turns from the app's
+     lavender day (Background into PrimaryContainer) to its violet night (OnPrimary sunk into Background), each tablet
+     lit by its own heat. Both screens are one held moment of the feed (session S1, moment M1), so their figures and their
+     heatmap agree cell for cell. */
+  .stage { background:
+      radial-gradient(42% 70% at 26% 48%, rgba(252,251,255,.85), rgba(252,251,255,0) 100%),
+      radial-gradient(42% 70% at 74% 50%, color-mix(in srgb, var(--n-pc) 42%, transparent), transparent 100%),
+      linear-gradient(90deg, var(--pc) 0%, color-mix(in srgb, var(--pc) 80%, var(--sv)) 42%, color-mix(in srgb, var(--n-on-primary) 40%, var(--n-bg)) 58%, var(--n-bg) 100%); }
+  .t1 { left: 166px; top: 49px; width: 403px; height: 528px; --bezel: 14px; --r: 30px; }
+  .t2 { left: 631px; top: 49px; width: 403px; height: 528px; --bezel: 14px; --r: 30px; }
+  .floor { position: absolute; top: 560px; height: 40px; width: 420px; border-radius: 50%; filter: blur(14px); }
+  .f1 { left: 158px; background: radial-gradient(closest-side, rgba(23,0,101,.30), rgba(23,0,101,0)); }
+  .f2 { left: 622px; background: radial-gradient(closest-side, rgba(0,0,0,.55), rgba(0,0,0,0)); }
+  .t2 { box-shadow: inset 0 0 0 1px rgba(230,225,229,.12), inset 0 1px 0 rgba(230,225,229,.18), 0 0 0 1px rgba(0,0,0,.6),
+        0 2px 4px rgba(0,0,0,.3), 0 16px 34px -8px rgba(0,0,0,.55), 0 44px 80px -24px rgba(0,0,0,.7); }
+</style></head>
+<body><div class="stage grain" style="--grain:.05">
+  <div class="floor f1"></div><div class="floor f2"></div>
+  <div class="device t1"><div class="screen"><img src="cap/tab-light@2x.png"></div></div>
+  <div class="device t2"><div class="screen"><img src="cap/tab-dark@2x.png"></div></div>
+</div></body></html>

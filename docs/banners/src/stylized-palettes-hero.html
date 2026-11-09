@@ -1,0 +1,34 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>stylized-palettes-hero</title>
+<link rel="stylesheet" href="frames.css">
+<style>
+  /* The theme does the look: one card from four builds of the app, each with a different palette in
+     Styles/ColorPaletteOverride.json (the shipped violet, and teal, magenta and orange generated from one seed each;
+     see README), alternating Light and Dark. Each card stands on a band of its own palette, the bands cut at the angle
+     of the card's drawn change arrow (56.3 degrees). Each build is its own session, so the figures differ. */
+  /* The hero (1920 x 1080) of stylized-palettes. Four bands cut at 56.3 degrees (over the 1080 px height an edge moves
+     720 px across), crossing the middle halfway between two cards (x 520, 960 and 1400) */
+  .band { position: absolute; inset: 0; }
+  .b1 { background: radial-gradient(40% 70% at 15% 48%, var(--bg), var(--pc));                       /* violet Light: Background, PrimaryContainer */
+        clip-path: polygon(0 0, 880px 0, 160px 100%, 0 100%); }
+  .b2 { background: radial-gradient(40% 70% at 39% 48%, color-mix(in srgb, #32A192 30%, #0F1413), #0F1413); /* teal Dark: PrimaryContainer into Background */
+        clip-path: polygon(880px 0, 1320px 0, 600px 100%, 160px 100%); }
+  .b3 { background: radial-gradient(40% 70% at 62% 48%, #FFF8F7, #FED9DF);                            /* magenta Light: Background, SurfaceVariant */
+        clip-path: polygon(1320px 0, 1760px 0, 1040px 100%, 600px 100%); }
+  .b4 { background: radial-gradient(40% 70% at 86% 48%, color-mix(in srgb, #E8710A 26%, #1B110B), #1B110B); /* orange Dark: PrimaryContainer into Background */
+        clip-path: polygon(1760px 0, 100% 0, 100% 100%, 1040px 100%); }
+  .card { width: 400px; --r: 16px; }
+  .k1 { left: 100px; top: 244px; }
+  .k2 { left: 540px; top: 288px; }
+  .k3 { left: 980px; top: 244px; }
+  .k4 { left: 1420px; top: 288px; }
+  .card img { border-radius: 16px; }
+  .dark { box-shadow: 0 1px 2px rgba(0,0,0,.35), 0 14px 30px -8px rgba(0,0,0,.55), 0 40px 80px -26px rgba(0,0,0,.75); }
+</style></head>
+<body><div class="stage grain" style="--grain:.05">
+  <div class="band b1"></div><div class="band b2"></div><div class="band b3"></div><div class="band b4"></div>
+  <div class="card k1"><img src="cap/card-light@3x.png"></div>
+  <div class="card k2 dark"><img src="cap/card-teal-dark@2x.png"></div>
+  <div class="card k3"><img src="cap/card-magenta-light@2x.png"></div>
+  <div class="card k4 dark"><img src="cap/card-orange-dark@2x.png"></div>
+</div></body></html>

@@ -1,0 +1,81 @@
+/* Shared frames and grounds for the Sales Heatmap banners. Every colour is the app's own:
+   SalesHeatmap/Styles/ColorPaletteOverride.json (generated to ColorPaletteOverride.xaml; Light, and Dark keyed "Dark")
+   and the one no-role colour in SalesHeatmap/App.xaml (PositiveColor, a rise in sales). Grounds mix two of these at a
+   time; glows, hairlines and shadows are the same values at reduced alpha.
+   The look is the card's own: a violet heat (Primary, its cells' strength is their opacity) on a lavender day surface
+   and a near-black violet night; the grounds are those two surfaces lit by the heat. */
+:root {
+  /* Light */
+  --primary: #5946D2;          /* PrimaryColor */
+  --pc: #E5DEFF;               /* PrimaryContainerColor */
+  --on-pc: #170065;            /* OnPrimaryContainerColor */
+  --secondary: #6B4EA2;        /* SecondaryColor */
+  --sc: #EBDDFF;               /* SecondaryContainerColor */
+  --bg: #FCFBFF;               /* BackgroundColor (the heatmap's well) */
+  --surface: #FFFFFF;          /* SurfaceColor (the card) */
+  --sv: #F2EFF5;               /* SurfaceVariantColor (the page) */
+  --ink: #1C1B1F;              /* OnSurfaceColor */
+  --ink-2: #8B8494;            /* OnSurfaceVariantColor */
+  --outline: #79747E;          /* OutlineColor (the card's edge) */
+  --rule: #C9C5D0;             /* OutlineVariantColor */
+  --inv-primary: #2A009F;      /* PrimaryInverseColor */
+  --positive: #1E7D3A;         /* App.xaml PositiveColor (Light) */
+  --error: #B3261E;            /* ErrorColor */
+  /* Dark */
+  --n-primary: #C7BFFF;        /* PrimaryColor */
+  --n-on-primary: #2A009F;     /* OnPrimaryColor */
+  --n-pc: #4129BA;             /* PrimaryContainerColor */
+  --n-sc: #433C52;             /* SecondaryContainerColor */
+  --n-bg: #1C1B1F;             /* BackgroundColor (the heatmap's well) */
+  --n-surface: #302D37;        /* SurfaceColor (the card) */
+  --n-sv: #47464F;             /* SurfaceVariantColor (the page) */
+  --n-ink: #E6E1E5;            /* OnSurfaceColor */
+  --n-ink-2: #C9C5D0;          /* OnSurfaceVariantColor */
+  --n-outline: #928F99;        /* OutlineColor */
+  --n-rule: #57545D;           /* OutlineVariantColor */
+  --n-positive: #7BD88F;       /* App.xaml PositiveColor (Dark) */
+  --n-error: #FFB4AB;          /* ErrorColor */
+}
+@font-face { font-family: 'Roboto'; font-weight: 500; src: url('fonts/Roboto-Medium.ttf'); }
+* { box-sizing: border-box; }
+html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: var(--sv); }
+.stage { position: absolute; inset: 0; overflow: hidden; }
+img { display: block; }
+
+/* Grain from an SVG turbulence, over the ground only */
+.grain::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none; opacity: var(--grain, .05); mix-blend-mode: overlay; z-index: 50;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .5  0 0 0 0 .5  0 0 0 0 .5  0 0 0 1 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  background-size: 240px 240px;
+}
+
+/* Generic desktop window: a slim neutral title bar, three hollow dots and an empty address pill; no marks */
+.win { position: absolute; border-radius: 10px; overflow: hidden; background: var(--sv);
+  box-shadow: 0 0 0 1px rgba(28,27,31,.10), 0 1px 2px rgba(28,27,31,.06), 0 12px 26px -8px rgba(23,0,101,.14), 0 40px 80px -24px rgba(23,0,101,.28); }
+.win .bar { height: var(--bar, 24px); display: flex; align-items: center; gap: 6px; padding: 0 11px; background: var(--surface);
+  border-bottom: 1px solid rgba(28,27,31,.08); }
+.win .bar i { width: 8px; height: 8px; border-radius: 50%; border: 1px solid rgba(28,27,31,.22); }
+.win .bar b { margin: 0 auto; width: 26%; height: 11px; border-radius: 6px; background: rgba(28,27,31,.06); }
+.win.night { background: var(--n-sv);
+  box-shadow: 0 0 0 1px rgba(230,225,229,.10), 0 1px 2px rgba(0,0,0,.3), 0 14px 30px -8px rgba(0,0,0,.5), 0 44px 84px -22px rgba(0,0,0,.65); }
+.win.night .bar { background: var(--n-surface); border-bottom-color: rgba(230,225,229,.07); }
+.win.night .bar i { border-color: rgba(230,225,229,.26); }
+.win.night .bar b { background: rgba(230,225,229,.07); }
+.win img { width: 100%; height: auto; }
+
+/* Generic phone and tablet: a graphite bezel from the Dark Background with a soft edge light; no notch, camera,
+   buttons or logo */
+.device { position: absolute; background: linear-gradient(150deg, #3A3842, var(--n-bg) 55%, #2B2931); padding: var(--bezel, 8px);
+  border-radius: var(--r, 36px);
+  box-shadow: inset 0 0 0 1px rgba(230,225,229,.10), inset 0 1px 0 rgba(230,225,229,.16), 0 0 0 1px rgba(28,27,31,.35),
+              0 2px 4px rgba(23,0,101,.08), 0 14px 30px -8px rgba(23,0,101,.22), 0 40px 72px -24px rgba(23,0,101,.36); }
+.device .screen { width: 100%; height: 100%; overflow: hidden; border-radius: calc(var(--r, 36px) - var(--bezel, 8px)); background: #000; }
+.device .screen img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.on-night .device { box-shadow: inset 0 0 0 1px rgba(230,225,229,.12), inset 0 1px 0 rgba(230,225,229,.18), 0 0 0 1px rgba(0,0,0,.6),
+              0 2px 4px rgba(0,0,0,.3), 0 16px 34px -8px rgba(0,0,0,.55), 0 44px 80px -24px rgba(0,0,0,.7); }
+
+/* A card lifted off the page: the capture keeps its own 2 px Outline edge and 16 px corners; only the shadow is added */
+.card { position: absolute; border-radius: var(--r, 16px);
+  box-shadow: 0 1px 2px rgba(23,0,101,.06), 0 10px 24px -8px rgba(23,0,101,.16), 0 34px 70px -24px rgba(23,0,101,.30); }
+.on-night .card { box-shadow: 0 1px 2px rgba(0,0,0,.3), 0 14px 30px -8px rgba(0,0,0,.5), 0 46px 90px -26px rgba(0,0,0,.7); }
+.card img { width: 100%; height: auto; border-radius: var(--r, 16px); }

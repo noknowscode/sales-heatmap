@@ -1,0 +1,16 @@
+{"open":"http://127.0.0.1:8932/","size":"600x800","dpr":3,"scheme":"light","at":"2026-11-09T18:12:28.019Z"}
+{"wait":40000,"at":"2026-11-09T18:12:32.938Z"}
+{"freeze":{"figures":{"x":122,"y":425,"width":356,"height":225},"dot":{"at":[435.3,160.2],"rgb":"#00685D"},"hold":100,"need":70,"dotNeed":70},"at":"2026-11-09T18:13:12.956Z"}
+{"tick":2000,"settledAfter":1700,"realMs":54803}
+{"frozen":true,"pageMs":3700,"still":100,"tickSlack":300,"dotSlack":300,"realMs":99613,"at":"2026-11-09T18:14:54.901Z"}
+{"shot":"teal-tab-light","at":"2026-11-09T18:14:54.901Z"}
+{"saved":"teal-tab-light","at":"2026-11-09T18:14:55.110Z"}
+{"scheme":"dark","run":48,"at":"2026-11-09T18:14:55.110Z"}
+{"wait":300,"at":"2026-11-09T18:14:55.113Z"}
+{"shot":"teal-tab-dark","at":"2026-11-09T18:14:55.415Z"}
+{"saved":"teal-tab-dark","at":"2026-11-09T18:14:55.579Z"}
+{"wait":400,"at":"2026-11-09T18:15:39.709Z"}
+{"run":32,"at":"2026-11-09T18:15:40.111Z"}
+{"wait":400,"at":"2026-11-09T18:15:41.093Z"}
+{"shot":"teal-tab-dark","at":"2026-11-09T18:15:41.494Z"}
+{"saved":"teal-tab-dark","at":"2026-11-09T18:15:41.672Z"}

@@ -1,0 +1,19 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>showcase-desk</title>
+<link rel="stylesheet" href="frames.css">
+<style>
+  /* The card in a desktop window (Light, 1440 x 900, the app's own page around the card) between a Dark phone and a
+     Light phone, on the app's lavender day (Background into PrimaryContainer). One running card (session S4): the
+     phones are one held moment shown in both themes (the same figures and heatmap), the window a later one, after the
+     feed had moved on. */
+  .stage { background:
+      radial-gradient(70% 75% at 50% 30%, var(--bg) 0%, color-mix(in srgb, var(--pc) 55%, var(--bg)) 50%, color-mix(in srgb, var(--pc) 90%, var(--primary) 10%) 100%); }
+  .w { left: 160px; top: 30px; width: 880px; --bar: 24px; }
+  .p1 { left: 70px; top: 146px; width: 216px; height: 456px; --bezel: 8px; --r: 32px; }
+  .p2 { left: 914px; top: 146px; width: 216px; height: 456px; --bezel: 8px; --r: 32px; }
+</style></head>
+<body><div class="stage grain" style="--grain:.05">
+  <div class="win w"><div class="bar"><i></i><i></i><i></i><b></b></div><img src="cap/desk-light@2x.png"></div>
+  <div class="device p1"><div class="screen"><img src="cap/phone-dark@2x.png"></div></div>
+  <div class="device p2"><div class="screen"><img src="cap/phone-light@2x.png"></div></div>
+</div></body></html>

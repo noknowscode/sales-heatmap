@@ -1,0 +1,11 @@
+{"open":"http://127.0.0.1:8934/","size":"600x800","dpr":3,"scheme":"light","at":"2026-11-09T18:21:42.113Z"}
+{"wait":40000,"at":"2026-11-09T18:21:48.509Z"}
+{"freeze":{"figures":{"x":122,"y":425,"width":356,"height":225},"dot":{"at":[435.3,160.2],"rgb":"#9B0044"},"hold":100,"need":70,"dotNeed":70},"at":"2026-11-09T18:22:28.524Z"}
+{"tick":8350,"settledAfter":8150,"realMs":193848}
+{"frozen":true,"pageMs":10200,"still":100,"tickSlack":150,"dotSlack":300,"realMs":227867,"at":"2026-11-09T18:26:19.439Z"}
+{"shot":"magenta-tab-light","at":"2026-11-09T18:26:19.439Z"}
+{"saved":"magenta-tab-light","at":"2026-11-09T18:26:19.740Z"}
+{"scheme":"dark","run":32,"at":"2026-11-09T18:26:19.742Z"}
+{"wait":300,"at":"2026-11-09T18:26:21.037Z"}
+{"shot":"magenta-tab-dark","at":"2026-11-09T18:26:21.337Z"}
+{"saved":"magenta-tab-dark","at":"2026-11-09T18:26:21.512Z"}

@@ -1,0 +1,28 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>focus-card</title>
+<link rel="stylesheet" href="frames.css">
+<style>
+  /* The whole card in Dark, flat and sharp (a 3x capture shown at 0.94x), standing on a dark violet floor that
+     mirrors it, back-lit by the Dark PrimaryContainer and Primary. The reflection is the same capture flipped at the same size. */
+  .stage { background:
+      radial-gradient(38% 62% at 50% 40%, color-mix(in srgb, var(--n-pc) 62%, var(--n-bg)) 0%, color-mix(in srgb, var(--n-on-primary) 30%, var(--n-bg)) 52%, var(--n-bg) 100%); }
+  .floor { position: absolute; left: 0; right: 0; top: var(--fy, 552px); bottom: 0;
+    background: linear-gradient(180deg, color-mix(in srgb, var(--n-on-primary) 22%, var(--n-bg)), var(--n-bg)); }
+  .horizon { position: absolute; left: 12%; right: 12%; top: var(--fy, 552px); height: 1px;
+    background: linear-gradient(90deg, rgba(199,191,255,0), rgba(199,191,255,.28), rgba(199,191,255,0)); }
+  .card { left: 412px; top: 35px; width: 376px; --r: 15px; }
+  .card img { border-radius: 15px; }
+  .mirror { position: absolute; left: 412px; top: var(--fy, 552px); width: 376px; height: 120px; overflow: hidden; opacity: .16;
+    -webkit-mask-image: linear-gradient(180deg, #000, transparent 55%); mask-image: linear-gradient(180deg, #000, transparent 55%); }
+  .mirror img { position: absolute; top: 0; left: 0; width: 376px; display: block; transform: scaleY(-1); border-radius: 15px; }
+  .rim { position: absolute; left: 300px; top: -20px; width: 600px; height: 560px; border-radius: 50%; filter: blur(50px);
+    background: radial-gradient(closest-side, rgba(65,41,186,.85), rgba(65,41,186,.35) 60%, rgba(65,41,186,0)); }
+  .rim2 { position: absolute; left: 470px; top: 0; width: 260px; height: 120px; border-radius: 50%; filter: blur(40px);
+    background: radial-gradient(closest-side, rgba(199,191,255,.35), rgba(199,191,255,0)); }
+</style></head>
+<body><div class="stage grain on-night" style="--grain:.06">
+  <div class="floor"></div><div class="horizon"></div>
+  <div class="rim"></div><div class="rim2"></div>
+  <div class="mirror"><img src="cap/card-dark@3x.png"></div>
+  <div class="card"><img src="cap/card-dark@3x.png"></div>
+</div></body></html>
