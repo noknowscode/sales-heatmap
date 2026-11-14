@@ -1,3 +1,5 @@
+> **Moved to uno-lab.** This project now lives in the `sales-heatmap/` folder of [noknowscode/uno-lab](https://github.com/noknowscode/uno-lab/tree/main/sales-heatmap) (private). This repository is archived and kept for its history.
+
 # Sales Heatmap
 
 Sales Heatmap is a live sales overview widget for Uno Platform. An MVUX feed publishes a new sales snapshot every two
